@@ -2,7 +2,7 @@
 $plinkPath = "C:\removeplugin\plink.exe"
 
 # Define the SSH credentials
-$sshUsername = "root"
+$sshUsername = "Example"
 $sshPassword = "xxxxxxxx"
 
 # Define the path to the text file containing IP addresses
@@ -13,7 +13,7 @@ $ipAddresses = Get-Content -Path $ipAddressesFilePath
 
 # Define the commands to run on the Linux server
 $commands = @(
-    "rm -f /home/root/storage/crystal-cash/plugins/Umico-1.0.10.jar"
+    "rm -f /home/Example.exe"
 )
 
 # Initialize an array to store the results
@@ -43,7 +43,7 @@ foreach ($ipAddress in $ipAddresses)
         {
 
             echo "Y" | & $plinkPath -ssh -l $sshUsername -pw $sshPassword -noagent $ipAddress exit
-            Write-Host "Linux makinesine baglanti basarili: $ipAddress"
+            Write-Host "Linux OS connected: $ipAddress"
             
                 foreach ($command in $commands)
                 {
@@ -64,5 +64,3 @@ foreach ($ipAddress in $ipAddresses)
     }
 }
 
-# Export the results to a CSV file
-$results | Export-Csv -Path "C:\script\ssh_results111.csv" -NoTypeInformation
